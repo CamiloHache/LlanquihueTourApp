@@ -1,5 +1,5 @@
-Gastronomía Local;Gastronómico;48000
-Crucero Lagos;Navegación;85000
-Ruta de los Volcanes;Aventura;75000
-Isla de Chiloé;Cultural;120000
-Saltos del Petrohué;Naturaleza;40000
+Ruta de los Volcanes|Aventura|85000|Diego Lagos|Español-Inglés|5
+Isla de Chiloé|Cultural|62000|Marta Gomez|Español|8
+Crucero Lagos|Navegación|95000|Andres Soto|Español-Alemán|12
+Gastronomía Local|Gastronómico|48000|Sofía Ruiz|Español|3
+Saltos del Petrohué|Naturaleza|30000|Carlos Diaz|Español-Inglés|2
