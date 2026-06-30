@@ -15,27 +15,35 @@ public class Tour {
     }
 
     public String getNombreTour() {
+
         return nombreTour;
     }
     public void setNombreTour(String nombreTour) {
+
         this.nombreTour = nombreTour;
     }
     public String getTipoTour() {
+
         return tipoTour;
     }
     public void setTipoTour(String tipoTour) {
+
         this.tipoTour = tipoTour;
     }
     public int getPrecio() {
+
         return precio;
     }
     public void setPrecio(int precio) {
+
         this.precio = precio;
     }
     public Guia getGuiaAsignado() {
+
         return guiaAsignado;
     }
     public void setGuiaAsignado(Guia guiaAsignado) {
+
         this.guiaAsignado = guiaAsignado;
     }
 

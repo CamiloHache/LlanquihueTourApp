@@ -2,8 +2,6 @@ package app; //Agregamos el package que se me pasó en el trabajo de la semana 3
 
 import service.GestorDatos;
 import model.Tour;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
