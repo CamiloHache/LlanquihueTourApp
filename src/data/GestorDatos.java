@@ -1,4 +1,4 @@
-package service; //Agregamos el package que se me pasó en el trabajo de la semana 3
+package data; //Agregamos el package que se me pasó en el trabajo de la semana 3
 
 import model.Tour;//Llamamos a la clase tour
 import model.Guia;

@@ -3,13 +3,21 @@ package model;
 public class PaseoLacustre extends ServicioTuristico {
     private String tipoEmbarcacion;
 
-    public PaseoLacustre(String codigo, String nombre, double precioBase, String tipoEmbarcacion) {
-        super(codigo, nombre, precioBase);
+    public PaseoLacustre(String nombre, int duracionTour, String tipoEmbarcacion) {
+        super(nombre, duracionTour);
         this.tipoEmbarcacion = tipoEmbarcacion;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Tipo de embarcación: " + tipoEmbarcacion;
+        return "PaseoLacustre{" +
+                "tipoEmbarcacion='" + tipoEmbarcacion + '\'' +
+                '}';
+    }
+
+    @Override
+    public void mostrarInformacion(){
+        super.mostrarInformacion();
+        System.out.println("--> Tipo de embarcación: " + tipoEmbarcacion + ".");
     }
 }

@@ -1,23 +1,13 @@
 package model;
 
 public class ServicioTuristico {
-    private String codigo;
     private String nombre;
-    private double precioBase;
+    private int duracionTour;
 
-    public ServicioTuristico(String codigo, String nombre, double precioBase) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.precioBase = precioBase;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+public ServicioTuristico(String nombre, int duracionTour) {
+    this.nombre = nombre;
+    this.duracionTour = duracionTour;
+}
 
     public String getNombre() {
         return nombre;
@@ -27,20 +17,23 @@ public class ServicioTuristico {
         this.nombre = nombre;
     }
 
-    public double getPrecioBase() {
-        return precioBase;
+    public int getDuracionTour() {
+        return duracionTour;
     }
 
-    public void setPrecioBase(double precioBase) {
-        this.precioBase = precioBase;
+    public void setDuracionTour(int duracionTour) {
+        this.duracionTour = duracionTour;
+    }
+
+    public void mostrarInformacion (){
+        System.out.println("Nombre del tour: " + nombre + ", duración: " + duracionTour + " horas.");
     }
 
     @Override
     public String toString() {
         return "ServicioTuristico{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", precioBase=" + precioBase +
+                "nombre='" + nombre + '\'' +
+                ", duracionTour=" + duracionTour +
                 '}';
     }
 }

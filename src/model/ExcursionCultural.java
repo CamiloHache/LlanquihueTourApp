@@ -1,15 +1,21 @@
 package model;
 
 public class ExcursionCultural extends ServicioTuristico {
-    private String idiomaGuia;
+    private String lugarHistorico;
 
-    public ExcursionCultural(String codigo, String nombre, double precioBase, String idiomaGuia) {
-        super(codigo, nombre, precioBase);
-        this.idiomaGuia = idiomaGuia;
+    public ExcursionCultural(String nombre, int duracionTour, String lugarHistorico) {
+        super(nombre, duracionTour);
+        this.lugarHistorico = lugarHistorico;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Idioma del guía: " + idiomaGuia;
+        return super.toString() + "Lugar Historico: " + lugarHistorico;
+    }
+
+    @Override
+    public void mostrarInformacion(){
+        super.mostrarInformacion();
+        System.out.println("Lugar Historico: " + lugarHistorico + ".");
     }
 }

@@ -1,6 +1,7 @@
-package app; //Agregamos el package que se me pasó en el trabajo de la semana 3
-
-import service.GestorDatos;
+package iu;
+import data.GestorServicios;
+import model.ServicioTuristico;
+import data.GestorDatos;
 import model.Tour;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,6 +21,14 @@ public class Main {
        System.out.println("==========================================");
 
        ArrayList<Tour> tours = gestor.cargarToursDesdeArchivo(ruta);
+
+       GestorServicios gestorSemana7 = new GestorServicios();
+       ArrayList<ServicioTuristico> servicios = gestorSemana7.obtenerServiciosDePrueba();
+       System.out.println("\n--- [SEMANA 7 - POLIFORMISMOS] ---");
+       for (ServicioTuristico s : servicios) {
+           s.mostrarInformacion();
+           System.out.println("-------------------------------\n");
+       }
 
        int opcion = -1;
        while (opcion!= 4) {

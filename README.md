@@ -18,12 +18,12 @@ LlanquihueTourApp/
 ├── resources/
 │   └── tours.txt            # Archivo plano con datos de Tours y Guías (delimitado por |)
 ├── src/
-│    ├── app/
+│    ├── iu/
 │    │   └── Main.java        # Clase ejecutable con menú interactivo por consola
 │    ├── model/
 │    │   ├── Guia.java        # Modelo de la entidad Guía de Turismo
 │    │   └── Tour.java        # Modelo Tour con la Composición fuerte de Guia
-│    ├── service/
+│    ├── data/
 │    │   └── GestorDatos.java # Servicio que administra el parseo de datos (split por pipe)
 │    └── util/
 │        └── Validador.java   # Utilidades lógicas para validar restricciones de negocio
@@ -34,7 +34,7 @@ LlanquihueTourApp/
 ## ⚙️ Criterios y Buenas Prácticas Aplicados
 
  
-### 1.- Organización Modular (Criterio 1): Código estructurado limpiamente en 4 paquetes funcionales independientes (app, model, service, util), subsanando de raíz cualquier error de organización de entregas anteriores.
+### 1.- Organización Modular (Criterio 1): Código estructurado limpiamente en 4 paquetes funcionales independientes (iu, model, data, util), subsanando de raíz cualquier error de organización de entregas anteriores.
 
 ### 2.- Encapsulamiento POO (Criterio 2): Clases desarrolladas con buenas prácticas de programación orientada a objetos (POO), incluyendo atributos privados, constructores parametrizados, getters, setters y el método toString() sobreescrito.
 
@@ -50,7 +50,7 @@ LlanquihueTourApp/
 
 ### 2.- Verifique la ubicación del archivo tours.txt dentro del directorio resources/ en la raíz de la aplicación.
 
-### 3.- Diríjase a src/app/Main.java y ejecute el método main.
+### 3.- Diríjase a src/iu/Main.java y ejecute el método main.
 
 ### 4.- Utilice el menú interactivo para desplegar el catálogo de tours, el detalle de sus guías asociados o ejecutar filtros lógicos de precio y tipo de viaje.
 ## Autor

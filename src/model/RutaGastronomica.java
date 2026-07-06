@@ -1,15 +1,23 @@
 package model;
 
 public class RutaGastronomica extends ServicioTuristico {
-    private String tipoComida;
+    private int numeroParadas;
 
-    public RutaGastronomica(String codigo, String nombre, double precioBase, String tipoComida) {
-        super(codigo, nombre, precioBase);
-        this.tipoComida = tipoComida;
+    public RutaGastronomica(String nombre, int duracionTour, int numeroParadas) {
+        super(nombre, duracionTour);
+        this.numeroParadas = numeroParadas;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Tipo de Comida: " + tipoComida;
+        return "RutaGastronomica{" +
+                "numeroParadas=" + numeroParadas +
+                '}';
+    }
+
+    @Override
+    public void mostrarInformacion(){
+        super.mostrarInformacion();
+        System.out.println("Numero de paradas: " + numeroParadas);
     }
 }
