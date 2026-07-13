@@ -1,109 +1,90 @@
 package iu;
-import data.GestorServicios;
-import model.ServicioTuristico;
 import data.GestorDatos;
-import model.Tour;
+import data.GestorServicios;
+import model.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-/**
- * Despliegue de app con menú interactivo básico con función de búsqueda y filtrado
- */
 
 public class Main {
-   public static void main(String[] args) {
-       GestorDatos gestor = new GestorDatos();
-       String ruta = "resources/tours.txt";
-       Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        GestorDatos gestor = new GestorDatos();
+        String ruta = "resources/tours.txt";
 
-       System.out.println("==========================================");
-       System.out.println("   SISTEMA DE GESTIÓN: LLANQUIHUE TOUR    ");
-       System.out.println("==========================================");
+        // Carga de datos de la semana anterior
+        ArrayList<Tour> toursArchivos = gestor.cargarToursDesdeArchivo(ruta);
 
-       ArrayList<Tour> tours = gestor.cargarToursDesdeArchivo(ruta);
+        // Acá unificamos las listas para la Semana8
+        ArrayList<Registrable> listaAgencia = new ArrayList<>();
 
-       GestorServicios gestorSemana7 = new GestorServicios();
-       ArrayList<ServicioTuristico> servicios = gestorSemana7.obtenerServiciosDePrueba();
-       System.out.println("\n--- [SEMANA 7 - POLIFORMISMOS] ---");
-       for (ServicioTuristico s : servicios) {
-           s.mostrarInformacion();
-           System.out.println("-------------------------------\n");
-       }
+        // LLenamos con los servicios de prueba creados en la semana anterior
+        GestorServicios gestorSemana7 = new GestorServicios();
+        listaAgencia.addAll(gestorSemana7.obtenerServiciosDePrueba());
 
-       int opcion = -1;
-       while (opcion!= 4) {
-           System.out.println("\n--- MENÚ DE OPERACIÓNES ---");
-           System.out.println("1.- Mostrar catálogo de tours");
-           System.out.println("2.- Buscar por tipo de tour");
-           System.out.println("3.- Buscar por precio");
-           System.out.println("4.- Salir");
-           System.out.println("Selecciones una opción: ");
+        // Agregamos objetos instanciados desde la clase vehiculo
+        listaAgencia.add(new Vehiculo("KJKW-89", 12));
+        listaAgencia.add(new Vehiculo("FTPL-45", 4));
 
-           try{
-               opcion = Integer.parseInt(scanner.nextLine().trim());
+        String[] opciones = {
+                "1- Mostrar Catálogo completo",
+                "2- Filtrar por vehículo",
+                "3. Filtrar por servicio",
+                "4. Salir"
+        };
 
-               switch (opcion) {
-                   case 1:
-                       System.out.println("\n---CATÁLOGO DE TOURS DISPONIBLES ---");
-                       if(tours.isEmpty()) {
-                           System.out.println("No hay tours disponibles en el momento.");
-                       } else {
-                           for (Tour t : tours) {
-                               System.out.println(t);
-                           }
-                       }
-                       break;
+        while (true) {
+            // En vez de por consola, ahora desplegamos con JOptionPane
+            String seleccion = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Seleccione una opción de operación:",
+                    "SISTEMA DE GESTIÓN: LLANQUIHUE TOUR V2",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opciones,
+                    opciones[0]
+            );
 
-                   case 2:
-                       System.out.print("\nIngrese el tipo de tour a buscar (ej: Aventura, Cultural, Navegación): ");
-                       String tipoBusqueda = scanner.nextLine().trim();
-                       System.out.println("\n--- RESULTADOS DE BÚSQUEDA ---");
-                       boolean encontradoTipo = false;
-                       for (Tour t : tours) {
-                           if (t.getTipoTour().equalsIgnoreCase(tipoBusqueda)) {
-                               System.out.println(t);
-                               encontradoTipo = true;
-                           }
-                       }
-                       if (!encontradoTipo) {
-                           System.out.println("No se encontraron tours del tipo: " + tipoBusqueda);
-                       }
-                       break;
+            // Salir del programa
+            if (seleccion == null || seleccion.contains("4. Salir")) {
+                JOptionPane.showMessageDialog(null, "Gracias por preferir Llanquihue Tour. ¡Buen Viaje!");
+                break;
+            }
 
-                   case 3:
-                       System.out.print("\nIngrese su presupuesto máximo en pesos ($): ");
-                       int presupuesto = Integer.parseInt(scanner.nextLine().trim());
-                       if (presupuesto < 0) {
-                           System.out.println("⚠️ El presupuesto no puede ser un valor negativo.");
-                           break;
-                       }
-                       System.out.println("\n--- TOURS COMPATIBLES CON SU PRESUPUESTO ---");
-                       boolean encontradoPrecio = false;
-                       for (Tour t : tours) {
-                           if (t.getPrecio() <= presupuesto) {
-                               System.out.println(t);
-                               encontradoPrecio = true;
-                           }
-                       }
-                       if (!encontradoPrecio) {
-                           System.out.println("No hay tours disponibles por ese valor.");
-                       }
-                       break;
+            try {
+                if (seleccion.contains("1. Mostrar Catálogo completo")) {
+                    StringBuilder sb = new StringBuilder("--- CATÁLOGO DE REGISTROS ---\n");
+                    for (Registrable r : listaAgencia) {
+                        sb.append(r.toString()).append("\n");
+                    }
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Todos los Registros", JOptionPane.INFORMATION_MESSAGE);
+                } else if (seleccion.contains("2. Filtrar por vehículo")) {
+                    StringBuilder sb = new StringBuilder("--- VEHÍULOS DISPONIBLES ---\n");
+                    boolean encontramosVehiculo = false;
+                    for (Registrable r : listaAgencia) {
+                        if (r instanceof Vehiculo) {
+                            Vehiculo v = (Vehiculo) r;
+                            sb.append("Vehículo ---> Patente: ").append(v.getPatente()).append(", Capacidad Pasajeros: ").append(v.getCapacidadPasajeros()).append("\n");
+                            encontramosVehiculo = true;
+                        }
+                    }
+                    if (!encontramosVehiculo) sb.append("No hay vehículos disponibles.");
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Filtro Vehículos", JOptionPane.WARNING_MESSAGE);
+                } else if (seleccion.contains("3. Filtrar por servicio")) {
+                    StringBuilder sb = new StringBuilder("--- SERVICIOS TURÍSTICOS DISPONIBLES ---\n");
+                    boolean encontramosServicio = false;
+                    for (Registrable r : listaAgencia) {
+                        if (r instanceof ServicioTuristico) {
+                            ServicioTuristico s = (ServicioTuristico) r;
+                            sb.append("Servicio ---> ").append(s.getNombre()).append(" (Duración: ").append(s.getDuracionTour()).append(" hrs)\n");
+                            encontramosServicio = true;
+                        }
+                    }
+                    if (!encontramosServicio) sb.append("No hay servicios disponibles.");
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Filtro Servicios", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
-                   case 4:
-                       System.out.println("\nSaliendo del gestor Llanquihue Tour. ¡Excelente viaje!");
-                       break;
-
-                   default:
-                       System.out.println("Opción no válida. Intente entre 1 y 4.");
-               }
-
-           } catch (NumberFormatException e) {
-               System.out.println("Entrada inválida: Digite únicamente números en el menú.");
-           } catch (Exception e) {
-               System.out.println("Anomalía detectada: " + e.getMessage());
-           }
-       }
-       scanner.close();
-   }
+    }
 }

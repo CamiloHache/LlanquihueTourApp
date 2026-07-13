@@ -1,6 +1,6 @@
 package model;
 
-public class RutaGastronomica extends ServicioTuristico {
+public class RutaGastronomica extends ServicioTuristico{
     private int numeroParadas;
 
     public RutaGastronomica(String nombre, int duracionTour, int numeroParadas) {
