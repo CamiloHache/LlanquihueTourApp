@@ -66,3 +66,5 @@ LlanquihueTourApp/
     * Visualizar el procesamiento polimórfico y el filtrado por consola.
 
 - **Camilo Hidalgo Aranda** - Estudiante de Analista programador de DUOC UC para el ramo Desarrollo Orientado a Objetos I 
+
+Video explicativo: https://drive.google.com/file/d/1jaLoGB_cnQwb30Im_Ev6rCltbtfD1jEE/view?usp=sharing
