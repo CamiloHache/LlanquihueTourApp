@@ -1,19 +1,22 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Llanquihue Tour App - Semana 7 (Formativa)
+# Llanquihue Tour App - Sistema de Gestión Unificada (Semana 8)
 
-## Descripción del Proyecto
+Breve descripción del sistema 
+## 🛠️ Clases e Interfaces Utilizadas
 
-Este proyecto es una aplicación de consola en Java desarrollada para la asignatura de Desarrollo Orientado a Objetos I en Duoc UC. El sistema gestiona catálogos de tours y servicios turísticos mediante programación modular y arquitectura de paquetes.
+El sistema implementa los siguientes componentes clave orientados a objetos:
 
-## 🚀 Novedades de la Semana 7: Polimorfismo y Colecciones Genéricas
-En esta entrega se integró el concepto de **Polimorfismo Dinámico en tiempo de ejecución** y **Colecciones Polimórficas**, permitiendo desacoplar la interfaz de usuario de las subclases específicas.
+*   **`model.Registrable`**: Interfaz base que define el contrato común del sistema mediante el método `mostrarResumen()`.
+*   **`model.GuiaTuristico`**: Clase que representa al personal de guía e implementa la interfaz `Registrable`.
+*   **`model.Vehiculo`**: Clase que gestiona las unidades de transporte e implementa la interfaz `Registrable`.
+*   **`model.ColaboradorExterno`**: Clase para prestadores de servicios externos vinculados a la agencia.
+*   **`data.GestorEntidades`**: Clase controladora encargada de almacenar la colección dinámica unificada (`List<Registrable>`) y procesar la diferenciación de tipos en tiempo de ejecución.
 
-### Componentes clave implementados:
-* **Superclase `ServicioTuristico`:** Define los atributos comunes (`nombre`, `duracionHoras`) y el método polimórfico base `mostrarInformacion()`.
-* **Subclases Especializadas:** `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural` aplican la anotación `@Override` para sobrescribir el comportamiento y desplegar sus atributos únicos.
-* **Colección Genérica:** Implementación de un `ArrayList<ServicioTuristico>` en la clase `GestorServicios` para almacenar de forma unificada múltiples tipos de servicios.
-* **Recorrido Polimórfico:** En la interfaz de usuario (`ui.Main`), se recorre la lista polimórfica utilizando referencias exclusivas de la superclase.
+## 🚀 Lógica de Diferenciación (`instanceof`)
+
+Para cumplir con las operaciones específicas de cada entidad dentro de una misma colección genérica, el sistema utiliza de manera explícita el operador **`instanceof`**. Esto permite validar el tipo de objeto real y aplicar filtros lógicos personalizados antes de realizar la conversión de tipo (casting) segura para acceder a los atributos exclusivos de cada clase.
+
 
 ## 🧱 Organización de Paquetes y Arquitectura
 
@@ -27,31 +30,39 @@ Para asegurar una separación estricta de responsabilidades según la pauta, el 
 
 LlanquihueTourApp/
 ├── resources/
-│   └── tours.txt            # Archivo plano con datos de Tours y Guías (delimitado por |)
+│   └── tours.txt                           
 ├── src/
 │    ├── data/
-│    │    ├── GestorDatos.java              # Servicio que administra el parseo de datos (split por pipe)
-│    │    └── GestorServicios.java          # Servicio donde se instancian los objetos mediante un método
+│    │    ├── GestorDatos.java              
+│    │    ├── GestorEntidades.java           
+│    │    └── GestorServicios.java          
 │    ├── ui/
-│    │   └── Main.java                      # Clase ejecutable con menú interactivo por consola
+│    │   └── Main.java                      
 │    ├── model/
-│    │   ├── ExcursionCultural.java         # Clase hija que hereda de la clase ServicioTuristico 
-│    │   ├── Guia.java                      # Modelo de la entidad Guía de Turismo
-│    │   ├── PaseoLacustre.java             # Clase hija que hereda de la clase ServicioTuristico
-│    │   ├── RutaGastronomica.java          # Clase hija que hereda de la clase ServicioTuristico
-│    │   ├── ServicioTuristico.java         # SuperClase padre sin instanciación
-│    │   └── Tour.java                      # Modelo Tour con la Composición fuerte de Guia
+│    │   ├── ColaboradorExterno.java          
+│    │   ├── ExcursionCultural.java         
+│    │   ├── GuiaTuristico.java                      
+│    │   ├── PaseoLacustre.java         
+│    │   ├── Registrable.java            # Interface abstracta para los servicios y rutas             
+│    │   ├── RutaGastronomica.java          
+│    │   ├── ServicioTuristico.java         
+│    │   ├── Tour.java 
+│    │   └── Vehiculo.java                      
 │    └── util/
-│        └── Validador.java                 # Utilidades lógicas para validar restricciones de negocio
+│        └── Validador.java                 
 │
 └── README.md
 ```
 
-## 🛠️ Instrucciones de Ejecución
-1. Abra el proyecto en **IntelliJ IDEA Ultimate**.
-2. Asegúrese de que el archivo `resources/tours.txt` se encuentre en la raíz del proyecto.
-3. Ejecute la clase `Main` ubicada en el paquete `ui`.
-4. Al iniciar, la consola desplegará automáticamente la **Demostración de Polimorfismo de la Semana 7** antes de dar paso al menú interactivo principal.
+## 💻 Instrucciones para Ejecutar el Programa
 
+1. Abra el proyecto en **IntelliJ IDEA**.
+2. Asegúrese de que la estructura de paquetes esté correctamente reconocida (`iu`, `data`, `model`, `util`).
+3. Localice el archivo `Main.java` dentro del paquete `iu`.
+4. Haga clic derecho sobre el archivo y seleccione **Run 'Main.main()'**.
+5. Se desplegará una interfaz gráfica interactiva (`JOptionPane`) que le permitirá:
+    * Ingresar nuevos registros de forma dinámica.
+    * Mostrar el catálogo total unificado.
+    * Visualizar el procesamiento polimórfico y el filtrado por consola.
 
 - **Camilo Hidalgo Aranda** - Estudiante de Analista programador de DUOC UC para el ramo Desarrollo Orientado a Objetos I 
