@@ -1,7 +1,7 @@
 package data; //Agregamos el package que se me pasó en el trabajo de la semana 3
 
 import model.Tour;//Llamamos a la clase tour
-import model.Guia;
+import model.GuiaTuristico;
 import util.Validador;
 import java.io.BufferedReader; //Importamos el buffer para hacer las lecturas
 import java.io.FileReader; //Importamos el lector de archivos
@@ -49,7 +49,7 @@ public class GestorDatos {
                     Validador.validarTexto(nombreGuia, "Nombre del Guía");
 
                     //Composición
-                    Guia guia = new Guia(nombreGuia, idiomaGuia, experienciaGuia);
+                    GuiaTuristico guia = new GuiaTuristico(nombreGuia, idiomaGuia, experienciaGuia);
                     Tour tour = new Tour(nombreTour, tipoTour, precio, guia);
 
                     listaTours.add(tour);

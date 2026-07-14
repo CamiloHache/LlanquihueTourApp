@@ -5,9 +5,9 @@ public class Tour {
     private String nombreTour;
     private String tipoTour;
     private int precio;
-    private Guia guiaAsignado; //Esto viene en composición de la clase Guia
+    private GuiaTuristico guiaAsignado; //Esto viene en composición de la clase Guia
 
-    public Tour(String nombreTour, String tipoTour, int precio, Guia guiaAsignado) {
+    public Tour(String nombreTour, String tipoTour, int precio, GuiaTuristico guiaAsignado) {
         this.nombreTour = nombreTour;
         this.tipoTour = tipoTour;
         this.precio = precio;
@@ -38,11 +38,11 @@ public class Tour {
 
         this.precio = precio;
     }
-    public Guia getGuiaAsignado() {
+    public GuiaTuristico getGuiaAsignado() {
 
         return guiaAsignado;
     }
-    public void setGuiaAsignado(Guia guiaAsignado) {
+    public void setGuiaAsignado(GuiaTuristico guiaAsignado) {
 
         this.guiaAsignado = guiaAsignado;
     }

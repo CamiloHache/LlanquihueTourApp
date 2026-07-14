@@ -9,6 +9,14 @@ public class ColaboradorExterno implements Registrable{
         this.rol = rol;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
     @Override
     public void mostrarResumen() {
         System.out.println( "Colaborador: " + nombre + ", Rol: " + rol);

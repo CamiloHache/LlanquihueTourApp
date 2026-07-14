@@ -1,5 +1,6 @@
 package data;
 
+import model.ColaboradorExterno;
 import model.Registrable;
 import model.GuiaTuristico;
 import model.Vehiculo;
@@ -27,9 +28,11 @@ public class GestorEntidades {
             r.mostrarResumen();
 
             if (r instanceof GuiaTuristico g) {
-                System.out.println(" -> Especialidad: " + g.getEspecialidad());
+                System.out.println(" -> Experiecia: " + g.getExperienciaAnios());
             } else if (r instanceof Vehiculo v) {
-                System.out.println(" -> Tipo de vehiculo: " + v.getTipoVehiculo());
+                System.out.println(" -> Capacidad de Pasajeros: " + v.getCapacidadPasajeros());
+            }else if (r instanceof ColaboradorExterno c) {
+                System.out.println(" -> Rol: " + c.getRol());
             }
         }
     }

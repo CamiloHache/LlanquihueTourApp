@@ -30,8 +30,11 @@ public ServicioTuristico(String nombre, int duracionTour) {
     }
 
     @Override
-    public void registrar() {
-        mostrarInformacion();
+    public void mostrarResumen() {
+        System.out.println(
+                "Servicio: " + nombre +
+                        " | Duración: " + duracionTour + " hrs"
+        );
     }
 
     @Override

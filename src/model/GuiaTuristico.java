@@ -4,12 +4,12 @@ package model;
  * clase para representar al Guia turistico
  */
 
-public class Guia {
+public class GuiaTuristico implements Registrable{
     private String nombre;
     private String idioma;
     private int experienciaAnios;
 
-    public Guia(String nombre, String idioma, int experienciaAnios) {
+    public GuiaTuristico(String nombre, String idioma, int experienciaAnios) {
         this.nombre = nombre;
         this.idioma = idioma;
         this.experienciaAnios = experienciaAnios;
@@ -38,6 +38,19 @@ public class Guia {
     public void setExperienciaAnios(int experienciaAnios){
 
         this.experienciaAnios = experienciaAnios;
+    }
+
+    @Override
+    public void mostrarResumen() {
+        System.out.println(
+                "Guía: "
+                        + nombre
+                        + " | Idioma: "
+                        + idioma
+                        + " | Experiencia: "
+                        + experienciaAnios
+                        + " años"
+        );
     }
 
     @Override

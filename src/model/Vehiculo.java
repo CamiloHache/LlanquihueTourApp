@@ -13,8 +13,13 @@ public class Vehiculo implements Registrable{
     public int getCapacidadPasajeros() {return capacidadPasajeros;}
 
     @Override
-    public void registrar() {
-        System.out.println("[VEHICULO REGISTRADO CORRECTAMENTE] Patente: " + patente + ", Capacidad de pasajeros: " + capacidadPasajeros);
+    public void mostrarResumen() {
+        System.out.println(
+                "Vehículo: "
+                        + patente
+                        + " | Capacidad: "
+                        + capacidadPasajeros
+        );
     }
 
     @Override
