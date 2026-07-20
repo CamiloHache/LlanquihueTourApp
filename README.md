@@ -55,7 +55,7 @@ LlanquihueTourApp/
 
 ## ⚙️ Instrucciones para clonar y ejecutar el programa
 
-1. Clonar el respositorio desde **GitHub**.
+1. Clonar el respositorio desde la consola del Intellij IDEA o desde la terminal de con el comando: 
 git clone [https://github.com/CamiloHache/LlanquihueTourApp.git](https://github.com/CamiloHache/LlanquihueTourEFT.git)
 2. Verifica que el archivo tours.txt esté correctamente ubicado dentro del directorio resources/.
 3. Ejecuta el archivo Main.java desde el paquete app.
@@ -66,4 +66,4 @@ git clone [https://github.com/CamiloHache/LlanquihueTourApp.git](https://github.
 © Duoc UC | Escuela de Informática y Telecomunicaciones | Evaluación Final Transversal EFT 
 
 ---
-Video explicativo: 
+Video explicativo: https://drive.google.com/file/d/1AMeshrHW1_1RJJB6wsc9bIaz38ay0YvA/view?usp=sharing
