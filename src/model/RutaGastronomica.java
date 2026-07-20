@@ -9,10 +9,13 @@ public class RutaGastronomica extends ServicioTuristico{
     }
 
     @Override
+    public String obtenerResumen() {
+        return super.obtenerResumen() + " | Paradas Gastronómicas: " + numeroParadas;
+    }
+
+    @Override
     public String toString() {
-        return "RutaGastronomica{" +
-                "numeroParadas=" + numeroParadas +
-                '}';
+        return obtenerResumen();
     }
 
     // Eliminamos la función mostrar información en función del último feedback

@@ -9,10 +9,12 @@ public class ExcursionCultural extends ServicioTuristico {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + "Lugar Historico: " + lugarHistorico;
+    public String obtenerResumen() {
+        return super.obtenerResumen() + " | Sitio Histórico: " + lugarHistorico;
     }
 
-    // Eliminamos la función mostrar información en función del último feedback
+    @Override
+    public String toString() {
+        return obtenerResumen();
     }
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class Tour {
+public class Tour implements Registrable{
 
     private String nombreTour;
     private String tipoTour;
@@ -55,5 +55,11 @@ public class Tour {
                 ", precio=" + precio +
                 ", guiaAsignado=" + guiaAsignado +
                 '}';
+    }
+
+    @Override
+    public String obtenerResumen() {
+        return "Tour: " + nombreTour + " [" + tipoTour + "] | Precio: $" + precio +
+                " | Guía: " + (guiaAsignado != null ? guiaAsignado.getNombre() : "Sin guía");
     }
 }

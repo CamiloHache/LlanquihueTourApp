@@ -1,29 +1,34 @@
 package app;
+
 import data.GestorDatos;
+import data.GestorEntidades;
 import data.GestorServicios;
 import model.*;
+import utils.Validador;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        GestorDatos gestor = new GestorDatos();
-        String ruta = "resources/tours.txt";
+        GestorEntidades gestorGlobal = new GestorEntidades();
+        GestorDatos lectorArchivo = new GestorDatos();
 
-        // Carga de datos de la semana anterior
-        ArrayList<Tour> toursArchivos = gestor.cargarToursDesdeArchivo(ruta);
+        // 1. Cargar datos desde archivo e ingresarlos a la colección polimórfica
+        for (Tour t : lectorArchivo.cargarToursDesdeArchivo("resources/tours.txt")) {
+            gestorGlobal.agregarEntidad(t);
+        }
 
-        // Acá unificamos las listas para la Semana8
-        ArrayList<Registrable> listaAgencia = new ArrayList<>();
-
-        // LLenamos con los servicios de prueba creados en la semana anterior
+        // 2. Cargar servicios base de la semana anterior
         GestorServicios gestorSemana7 = new GestorServicios();
-        listaAgencia.addAll(gestorSemana7.obtenerServiciosDePrueba());
+        for (ServicioTuristico st : gestorSemana7.obtenerServiciosDePrueba()) {
+            gestorGlobal.agregarEntidad(st);
+        }
 
-        // Agregamos objetos instanciados desde la clase vehiculo
-        listaAgencia.add(new Vehiculo("KJKW-89", 12));
-        listaAgencia.add(new Vehiculo("FTPL-45", 4));
-        listaAgencia.add(new ColaboradorExterno("Carlos Díaz", "Chofer"));
+        // 3. Agregar objetos iniciales con la nueva estructura estructurada
+        try {
+            gestorGlobal.agregarEntidad(new Vehiculo("KJKW-89", 12));
+            gestorGlobal.agregarEntidad(new Vehiculo("FTPL-45", 4));
+            gestorGlobal.agregarEntidad(new ColaboradorExterno("Carlos Díaz", "Chofer", new Rut("18432987-k")));
+        } catch (Exception ignored) {}
 
         String[] opciones = {
                 "1. Mostrar Catálogo completo",
@@ -35,136 +40,71 @@ public class Main {
         };
 
         while (true) {
-            // En vez de por consola, ahora desplegamos con JOptionPane
             String seleccion = (String) JOptionPane.showInputDialog(
                     null,
-                    "Seleccione una opción de operación:",
-                    "SISTEMA DE GESTIÓN: LLANQUIHUE TOUR V2",
+                    "Seleccione una operación:",
+                    "LLANQUIHUE TOUR V3 - EFT",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     opciones,
                     opciones[0]
             );
 
-            // Salir del programa
             if (seleccion == null || seleccion.contains("6. Salir")) {
-                JOptionPane.showMessageDialog(null, "Gracias por preferir Llanquihue Tour. ¡Buen Viaje!");
+                JOptionPane.showMessageDialog(null, "¡Buen Viaje! Saliendo del sistema.");
                 break;
             }
 
             try {
-
                 if (seleccion.contains("1. Mostrar Catálogo completo")) {
-
-                    StringBuilder sb = new StringBuilder("--- CATÁLOGO DE REGISTROS ---\n");
-
-                    for (Registrable r : listaAgencia) {
-                        sb.append(r.toString()).append("\n");
-                    }
-
-                    JOptionPane.showMessageDialog(null, sb.toString(),
-                            "Todos los Registros",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, gestorGlobal.generarReporteCatalogo(), "Catálogo", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (seleccion.contains("2. Filtrar por vehículo")) {
-
-                    StringBuilder sb = new StringBuilder("--- VEHÍCULOS DISPONIBLES ---\n");
-                    boolean encontramosVehiculo = false;
-
-                    for (Registrable r : listaAgencia) {
-
-                        if (r instanceof Vehiculo) {
-
-                            Vehiculo v = (Vehiculo) r;
-
-                            sb.append("Vehículo ---> Patente: ")
-                                    .append(v.getPatente())
-                                    .append(", Capacidad Pasajeros: ")
-                                    .append(v.getCapacidadPasajeros())
-                                    .append("\n");
-
-                            encontramosVehiculo = true;
+                    StringBuilder sb = new StringBuilder("--- VEHÍCULOS ---\n");
+                    for (Registrable r : gestorGlobal.getEntidades()) {
+                        if (r instanceof Vehiculo v) {
+                            sb.append(v.obtenerResumen()).append("\n");
                         }
                     }
-
-                    if (!encontramosVehiculo) {
-                        sb.append("No hay vehículos disponibles.");
-                    }
-
-                    JOptionPane.showMessageDialog(null, sb.toString(),
-                            "Filtro Vehículos",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Vehículos", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (seleccion.contains("3. Filtrar por servicio")) {
-
-                    StringBuilder sb = new StringBuilder("--- SERVICIOS TURÍSTICOS DISPONIBLES ---\n");
-                    boolean encontramosServicio = false;
-
-                    for (Registrable r : listaAgencia) {
-
-                        if (r instanceof ServicioTuristico) {
-
-                            ServicioTuristico s = (ServicioTuristico) r;
-
-                            sb.append("Servicio ---> ")
-                                    .append(s.getNombre())
-                                    .append(" (Duración: ")
-                                    .append(s.getDuracionTour())
-                                    .append(" hrs)\n");
-
-                            encontramosServicio = true;
+                    StringBuilder sb = new StringBuilder("--- SERVICIOS ---\n");
+                    for (Registrable r : gestorGlobal.getEntidades()) {
+                        if (r instanceof ServicioTuristico s) {
+                            sb.append(s.obtenerResumen()).append("\n");
                         }
                     }
-
-                    if (!encontramosServicio) {
-                        sb.append("No hay servicios disponibles.");
-                    }
-
-                    JOptionPane.showMessageDialog(null, sb.toString(),
-                            "Filtro Servicios",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, sb.toString(), "Servicios", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (seleccion.contains("4. Agregar vehículo")) {
+                    String patente = JOptionPane.showInputDialog("Ingrese patente:");
+                    Validador.validarTexto(patente, "Patente");
 
-                    String patente = JOptionPane.showInputDialog("Ingrese la patente:");
+                    String capStr = JOptionPane.showInputDialog("Capacidad Pasajeros:");
+                    Validador.validarTexto(capStr, "Capacidad");
+                    int capacidad = Integer.parseInt(capStr);
+                    if(capacidad <= 0) throw new IllegalArgumentException("La capacidad debe ser mayor a 0.");
 
-                    int capacidad = Integer.parseInt(
-                            JOptionPane.showInputDialog("Capacidad de pasajeros:")
-                    );
-
-                    Vehiculo nuevo = new Vehiculo(patente, capacidad);
-
-                    listaAgencia.add(nuevo);
-
-                    JOptionPane.showMessageDialog(null,
-                            "Vehículo agregado correctamente.");
+                    gestorGlobal.agregarEntidad(new Vehiculo(patente, capacidad));
+                    JOptionPane.showMessageDialog(null, "Vehículo registrado con éxito.");
 
                 } else if (seleccion.contains("5. Agregar colaborador")) {
-
                     String nombre = JOptionPane.showInputDialog("Nombre:");
+                    Validador.validarTexto(nombre, "Nombre");
 
                     String rol = JOptionPane.showInputDialog("Rol:");
+                    Validador.validarTexto(rol, "Rol");
 
-                    ColaboradorExterno colaborador =
-                            new ColaboradorExterno(nombre, rol);
+                    String rutInput = JOptionPane.showInputDialog("RUT (ej: 12345678-9):");
+                    Rut rutObj = new Rut(rutInput);
 
-                    listaAgencia.add(colaborador);
-
-                    JOptionPane.showMessageDialog(null,
-                            "Colaborador agregado correctamente.");
+                    gestorGlobal.agregarEntidad(new ColaboradorExterno(nombre, rol, rutObj));
+                    JOptionPane.showMessageDialog(null, "Colaborador registrado con éxito.");
                 }
-
             } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Error: " + e.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE
-                );
-
+                JOptionPane.showMessageDialog(null, "Error de validación: " + e.getMessage(), "Error de entrada", JOptionPane.ERROR_MESSAGE);
             }
         }
-
     }
 }

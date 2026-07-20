@@ -9,10 +9,9 @@ public class PaseoLacustre extends ServicioTuristico {
     }
 
     @Override
-    public String toString() {
-        return "PaseoLacustre{" +
-                "tipoEmbarcacion='" + tipoEmbarcacion + '\'' +
-                '}';
+    public String obtenerResumen() {
+        // Combinamos la lógica base de ServicioTuristico con el atributo único de esta clase
+        return super.obtenerResumen() + " | Embarcación: " + tipoEmbarcacion;
     }
 
     // Eliminamos la función mostrar información en función del último feedback

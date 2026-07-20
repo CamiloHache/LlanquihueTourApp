@@ -28,18 +28,12 @@ public ServicioTuristico(String nombre, int duracionTour) {
     // Eliminamos la función mostrar información en función del último feedback
 
     @Override
-    public void mostrarResumen() {
-        System.out.println(
-                "Servicio: " + nombre +
-                        " | Duración: " + duracionTour + " hrs"
-        );
+    public String obtenerResumen() {
+        return "Servicio: " + nombre + " | Duración: " + duracionTour + " hrs";
     }
 
     @Override
     public String toString() {
-        return "ServicioTuristico{" +
-                "nombre='" + nombre + '\'' +
-                ", duracionTour=" + duracionTour +
-                '}';
+        return obtenerResumen();
     }
 }
