@@ -1,6 +1,6 @@
 package model;
 
-public class Vehiculo implements Registrable{
+public class Vehiculo implements Registrable {
     private String patente;
     private int capacidadPasajeros;
 
@@ -9,21 +9,16 @@ public class Vehiculo implements Registrable{
         this.capacidadPasajeros = capacidadPasajeros;
     }
 
-    public String getPatente() {return patente;}
-    public int getCapacidadPasajeros() {return capacidadPasajeros;}
+    public String getPatente() { return patente; }
+    public int getCapacidadPasajeros() { return capacidadPasajeros; }
 
     @Override
-    public void mostrarResumen() {
-        System.out.println(
-                "Vehículo: "
-                        + patente
-                        + " | Capacidad: "
-                        + capacidadPasajeros
-        );
+    public String obtenerResumen() {
+        return "Vehículo ---> Patente: " + patente + " | Capacidad Pasajeros: " + capacidadPasajeros;
     }
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "patente=" + patente + ", capacidadPasajeros=" + capacidadPasajeros + '}';
+        return obtenerResumen();
     }
 }

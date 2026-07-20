@@ -25,9 +25,7 @@ public ServicioTuristico(String nombre, int duracionTour) {
     this.duracionTour = duracionTour;
     }
 
-    public void mostrarInformacion (){
-        System.out.println("Nombre del tour: " + nombre + ", duración: " + duracionTour + " horas.");
-    }
+    // Eliminamos la función mostrar información en función del último feedback
 
     @Override
     public void mostrarResumen() {

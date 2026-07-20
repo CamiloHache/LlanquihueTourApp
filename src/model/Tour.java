@@ -1,4 +1,4 @@
-package model; //Agregamos el package que se me pasó en el trabajo de la semana 3
+package model;
 
 public class Tour {
 

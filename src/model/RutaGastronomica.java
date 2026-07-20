@@ -15,9 +15,5 @@ public class RutaGastronomica extends ServicioTuristico{
                 '}';
     }
 
-    @Override
-    public void mostrarInformacion(){
-        super.mostrarInformacion();
-        System.out.println("Numero de paradas: " + numeroParadas);
-    }
+    // Eliminamos la función mostrar información en función del último feedback
 }
