@@ -2,7 +2,7 @@ package data; //Agregamos el package que se me pasó en el trabajo de la semana 
 
 import model.Tour;//Llamamos a la clase tour
 import model.GuiaTuristico;
-import util.Validador;
+import utils.Validador;
 import java.io.BufferedReader; //Importamos el buffer para hacer las lecturas
 import java.io.FileReader; //Importamos el lector de archivos
 import java.io.IOException;

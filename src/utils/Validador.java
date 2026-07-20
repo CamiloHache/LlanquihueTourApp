@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 /**
  * Clase para centralizar las validaciones lógicas

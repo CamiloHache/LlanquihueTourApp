@@ -48,7 +48,7 @@ LlanquihueTourApp/
 │    │   ├── ServicioTuristico.java         
 │    │   ├── Tour.java 
 │    │   └── Vehiculo.java                      
-│    └── util/
+│    └── utils/
 │        └── Validador.java                 
 │
 └── README.md
@@ -57,8 +57,8 @@ LlanquihueTourApp/
 ## 💻 Instrucciones para Ejecutar el Programa
 
 1. Abra el proyecto en **IntelliJ IDEA**.
-2. Asegúrese de que la estructura de paquetes esté correctamente reconocida (`iu`, `data`, `model`, `util`).
-3. Localice el archivo `Main.java` dentro del paquete `iu`.
+2. Asegúrese de que la estructura de paquetes esté correctamente reconocida (`app`, `data`, `model`, `utils`).
+3. Localice el archivo `Main.java` dentro del paquete `app`.
 4. Haga clic derecho sobre el archivo y seleccione **Run 'Main.main()'**.
 5. Se desplegará una interfaz gráfica interactiva (`JOptionPane`) que le permitirá:
     * Ingresar nuevos registros de forma dinámica.
